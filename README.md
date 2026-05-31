@@ -3,7 +3,6 @@
 ## Details
 - Name: Aishani Billore
 - College: SKIT
-- Week: 1
 - Domain: Data Science
 
 **##WEEK 1 ASSIGNMENTS**
