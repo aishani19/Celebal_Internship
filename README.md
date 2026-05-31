@@ -1,11 +1,12 @@
-# Week 1 Assignment - Machine Learning Foundations
+# Celebal Assignments [DATA SCIENCE]
 
 ## Details
 - Name: Aishani Billore
-- -College: SKIT
+- College: SKIT
 - Week: 1
 - Domain: Data Science
 
+**##WEEK 1 ASSIGNMENTS**
 ## Assignment Overview
 This assignment introduces the fundamental concepts required for Machine Learning and Data Science. It combines programming, mathematics, and data analysis concepts through practical exercises.
 
