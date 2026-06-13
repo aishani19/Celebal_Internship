@@ -140,3 +140,92 @@ The dataset `tesla_deliveries_dataset_2015_2025.csv` contains simulated Tesla de
 ## Conclusion
 
 The project successfully demonstrated an end-to-end ML pipeline for predicting Tesla deliveries. Regression models achieved excellent performance, largely due to the `Production_Units` feature. However, the time series models highlighted the dataset's synthetic nature by struggling to provide meaningful forecasts beyond a simple average, resulting in negative R² scores. This underscores the importance of understanding data characteristics before applying complex modeling techniques.
+
+## Week 3
+# Customer Intelligence System — Unsupervised Learning on Country Data
+
+## Project Overview
+This project develops a **Customer Intelligence System** using unsupervised learning techniques to segment countries based on various socio-economic and health indicators. The primary goal is to identify countries that are most in need of aid, enabling strategic decision-making for resource allocation.
+
+## Dataset
+The analysis is performed on the `Country-data.csv` dataset, which contains 9 socio-economic and health indicators for 167 countries. Key features include: `child_mort` (child mortality), `exports`, `health` (total health spending), `imports`, `income`, `inflation`, `life_expec` (life expectancy), `total_fer` (total fertility rate), and `gdpp` (GDP per capita).
+
+## Methodology and Analysis
+The project follows a standard data science workflow:
+
+### 1. Importing Libraries
+All necessary Python libraries for data manipulation, visualization, clustering, and classification were imported, including `pandas`, `numpy`, `matplotlib`, `seaborn`, `sklearn`, `xgboost`, and `lightgbm`.
+
+### 2. Data Loading
+The `Country-data.csv` file was loaded into a pandas DataFrame. Initial inspection confirmed its shape (167 rows, 10 columns) and structure.
+
+### 3. Data Cleaning
+-   Whitespace was stripped from column names.
+-   Duplicate rows were checked for and removed (none found).
+-   All feature columns were converted to numeric types, coercing errors to NaN.
+-   Missing values (NaNs) in feature columns were imputed using the median of their respective columns.
+
+### 4. Exploratory Data Analysis (EDA)
+-   **Statistical Summary:** Basic descriptive statistics (mean, std, min, max, quartiles) were generated for all numerical features.
+-   **Feature Distributions:** Histograms revealed that most features, especially `child_mort`, `income`, and `gdpp`, are right-skewed.
+-   **Correlation Heatmap:** Visualized relationships between features. Notable strong correlations include: `child_mort` and `life_expec` (negative, -0.89), `income` and `gdpp` (positive, 0.90).
+-   **Boxplots:** Used to identify outliers. `income` and `gdpp` showed extreme outliers, likely representing highly developed nations.
+
+### 5. Feature Scaling
+`StandardScaler` was applied to the numerical features to ensure they have a mean of 0 and a standard deviation of 1. This prevents features with larger ranges from dominating distance-based algorithms.
+
+### 6. Clustering: Determining Optimal K
+-   **Elbow Method:** Used inertia values for K-Means with K ranging from 2 to 10. An 'elbow' was observed at K=3.
+-   **Silhouette Score:** Calculated for K=2 to 10. While not the highest, K=3 showed a reasonable balance with the elbow method.
+-   **Conclusion:** Optimal number of clusters chosen as K=3.
+
+### 7. Clustering: K-Means & K-Medoids
+-   **K-Means Clustering:** A K-Means model was trained with K=3. The countries were grouped into 3 clusters, with a Silhouette Score of 0.2833.
+-   **K-Medoids Clustering:** A K-Medoids model was trained with K=3, yielding a Silhouette Score of 0.1562.
+-   **Cluster Profiling:** Mean values of features for each K-Means cluster were calculated to understand their characteristics.
+-   **Cluster Labeling:** Clusters were manually labeled based on their profiles:
+    -   **Cluster 0: Developed** (high GDP, low child mortality)
+    -   **Cluster 1: Underdeveloped** (high child mortality, low life expectancy, low GDP)
+    -   **Cluster 2: Developing** (intermediate characteristics)
+
+### 8. Clustering: DBSCAN & Hierarchical Methods
+-   **DBSCAN:** Applied to identify density-based clusters and outliers. It found 1 main cluster and 30 countries identified as 'noise' or outliers.
+-   **Hierarchical Clustering:** A dendrogram was generated using Ward's method. Agglomerative clustering with 3 clusters was performed, yielding a Silhouette Score of 0.2456.
+
+### 9. Dimensionality Reduction: PCA
+-   **PCA Application:** Principal Component Analysis was used to reduce the 9 features to 2 principal components for visualization.
+-   **Variance Explained:** The first two principal components captured 63.1% of the total variance.
+-   **Visualization:** A scatterplot of the PCA-transformed data, colored by K-Means clusters, showed good separation between the three development levels.
+-   **Scree Plot:** Showed that the first 4 PCs explain approximately 87.2% of the total variance.
+
+### 10. Supervised Classification Models
+To predict the assigned development levels, several supervised models were trained and evaluated:
+-   **Random Forest Classifier:** Achieved 100.0% test accuracy and 95.8% cross-validation accuracy.
+-   **Logistic Regression:** Achieved 100.0% test accuracy and 95.8% cross-validation accuracy.
+-   **Naive Bayes:** Achieved 100.0% test accuracy and 95.8% cross-validation accuracy.
+-   **K-Nearest Neighbors (KNN):** Achieved 91.2% test accuracy and 94.0% cross-validation accuracy.
+-   **Support Vector Machine (SVM):** Achieved 97.1% test accuracy and 96.4% cross-validation accuracy.
+-   **Decision Tree:** Achieved 94.1% test accuracy and 92.2% cross-validation accuracy.
+-   **Gradient Boosting Classifier:** Achieved 97.1% test accuracy and 94.0% cross-validation accuracy.
+-   **LightGBM:** Achieved 100.0% test accuracy and 95.2% cross-validation accuracy.
+-   **Stacking Classifier:** Achieved 100.0% test accuracy and 96.4% cross-validation accuracy.
+-   **Ada Boost Classifier:** Achieved 97.1% test accuracy and 97.0% cross-validation accuracy.
+
+### 11. Model Evaluation & Comparison
+A bar chart visually compared the test and cross-validation accuracies of all trained supervised models, demonstrating the high predictive power of most models in classifying countries into their development levels.
+
+### 12. Cluster Profiling & Visualization
+Boxplots illustrated the distribution of key indicators (`child_mort`, `life_expec`, `gdpp`, `income`, `health`, `total_fer`) across the `Developed`, `Developing`, and `Underdeveloped` levels, clearly showcasing the distinct characteristics of each cluster.
+
+### 13. Interactive Summary & Top Aid Countries
+-   **Summary Table:** Presented sample countries for each development level along with their average key metrics (GDP, life expectancy, child mortality).
+-   **Top 10 Countries in Need of Aid:** Identified and visualized the top 10 countries from the 'Underdeveloped' cluster with the highest 'need_score' (a composite score based on child mortality, life expectancy, and GDP per capita).
+
+## 14. Key Observations and Conclusion
+-   The project successfully segmented 167 countries into three distinct development levels: **Developed**, **Developing**, and **Underdeveloped**, using K-Means clustering.
+-   Critical indicators like `child_mort`, `life_expec`, and `gdpp` were identified as the most influential features in determining a country's development level.
+-   Various supervised classification models demonstrated high accuracy (many achieving 100% test accuracy) in predicting these development levels, validating the robustness of the clustering.
+-   A clear list of the top 10 countries most in need of aid was generated, providing actionable insights for organizations focusing on international development.
+
+This Customer Intelligence System provides a robust framework for understanding global development disparities and guiding aid initiatives effectively.
+```
