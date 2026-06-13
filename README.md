@@ -226,6 +226,3 @@ Boxplots illustrated the distribution of key indicators (`child_mort`, `life_exp
 -   Critical indicators like `child_mort`, `life_expec`, and `gdpp` were identified as the most influential features in determining a country's development level.
 -   Various supervised classification models demonstrated high accuracy (many achieving 100% test accuracy) in predicting these development levels, validating the robustness of the clustering.
 -   A clear list of the top 10 countries most in need of aid was generated, providing actionable insights for organizations focusing on international development.
-
-This Customer Intelligence System provides a robust framework for understanding global development disparities and guiding aid initiatives effectively.
-```
