@@ -226,3 +226,38 @@ Boxplots illustrated the distribution of key indicators (`child_mort`, `life_exp
 -   Critical indicators like `child_mort`, `life_expec`, and `gdpp` were identified as the most influential features in determining a country's development level.
 -   Various supervised classification models demonstrated high accuracy (many achieving 100% test accuracy) in predicting these development levels, validating the robustness of the clustering.
 -   A clear list of the top 10 countries most in need of aid was generated, providing actionable insights for organizations focusing on international development.
+
+### WEEK4 Assignment
+# CIFAR-10 Image Classification: ANN vs. CNN Performance Analysis
+
+## Overview
+This notebook explores the performance of Artificial Neural Networks (ANNs) and Convolutional Neural Networks (CNNs) on a synthetic subset of the CIFAR-10 image classification dataset. The primary goal is to compare how different network architectures and training strategies impact model accuracy and generalization capabilities for image-based tasks.
+
+## Project Scope
+The assignment covers the following key areas:
+-   **ANN vs. CNN Comparison**: Directly contrasting the effectiveness of ANNs (which flatten image data) and CNNs (which process spatial features).
+-   **Deeper ANN Layers (Task 1)**: Investigating if increasing the depth of an ANN can overcome its inherent limitations for image data.
+-   **More CNN Filters (Task 2)**: Evaluating the impact of increasing the number of filters in convolutional layers on feature extraction and performance.
+-   **Early Stopping (Tasks 3 & 4)**: Implementing a callback to prevent overfitting and optimize training duration by monitoring validation loss.
+-   **Data Augmentation (Task 5)**: Applying image transformations during training to enhance model robustness and generalization.
+-   **Final Comparison**: A comprehensive analysis and visualization of all models' performance.
+
+## Dataset
+The project uses a synthetic version of the CIFAR-10 dataset, consisting of:
+-   **10,000 training samples**
+-   **2,000 test samples**
+-   **10 classes** of images (e.g., airplane, automobile, bird, cat, etc.)
+-   **Image size**: 32x32 pixels with 3 color channels (RGB).
+
+## Architectures and Strategies Implemented
+1.  **Baseline ANN**: A foundational ANN with two hidden dense layers.
+2.  **Deep ANN (Task 1)**: An expanded ANN with four hidden dense layers to test the effect of increased depth.
+3.  **Baseline CNN**: A standard CNN architecture with convolutional, batch normalization, and max-pooling layers.
+4.  **CNN More Filters (Task 2)**: An enhanced CNN based on the baseline, but with an increased number of filters in its convolutional layers.
+5.  **CNN EarlyStopping (Tasks 3 & 4)**: The 'CNN More Filters' architecture trained with an `EarlyStopping` callback to halt training when validation loss stops improving.
+6.  **CNN Augmentation (Task 5)**: The 'CNN More Filters' architecture integrated with a data augmentation pipeline (random flips, rotations, and zooms) to improve generalization.
+
+## Key Findings & Conclusion
+The experiments clearly demonstrate that **Convolutional Neural Networks (CNNs) significantly outperform Artificial Neural Networks (ANNs)** for image classification tasks. This is primarily due to CNNs' ability to automatically learn and preserve spatial hierarchies within image data, which ANNs lose when images are flattened.
+
+Enhancements such as **increasing CNN filter count**, implementing **EarlyStopping**, and especially **Data Augmentation** further improved the CNN models' performance and generalization capabilities, underscoring their importance in robust image classification.
