@@ -262,7 +262,7 @@ The experiments clearly demonstrate that **Convolutional Neural Networks (CNNs) 
 
 Enhancements such as **increasing CNN filter count**, implementing **EarlyStopping**, and especially **Data Augmentation** further improved the CNN models' performance and generalization capabilities, underscoring their importance in robust image classification.
 
-##Week 5
+## Week 5 Assingment
 
 # Deep Learning Text Generation Learning Project
 
