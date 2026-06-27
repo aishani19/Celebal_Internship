@@ -261,3 +261,60 @@ The project uses a synthetic version of the CIFAR-10 dataset, consisting of:
 The experiments clearly demonstrate that **Convolutional Neural Networks (CNNs) significantly outperform Artificial Neural Networks (ANNs)** for image classification tasks. This is primarily due to CNNs' ability to automatically learn and preserve spatial hierarchies within image data, which ANNs lose when images are flattened.
 
 Enhancements such as **increasing CNN filter count**, implementing **EarlyStopping**, and especially **Data Augmentation** further improved the CNN models' performance and generalization capabilities, underscoring their importance in robust image classification.
+
+##Week 5
+
+# Deep Learning Text Generation Learning Project
+
+## Text Generation using Vanilla RNN, LSTM, and GRU
+
+This project is designed for students and beginners to explore and understand how sequence models learn: grammar, sentence flow, contextual dependencies, and perform next-word prediction for text generation.
+
+**Goal:** To compare the performance of **Simple RNN, LSTM, and GRU** models on the same text corpus and understand why gated architectures are generally more effective for sequence modeling.
+
+## Problem Statement
+
+Design and implement Deep Learning (DL) models capable of learning the underlying structure, grammar, and contextual dependencies of a given text corpus to generate coherent and meaningful text sequences using:
+
+1.  **Vanilla RNN**
+2.  **LSTM**
+3.  **GRU**
+
+Then compare:
+-   training loss
+-   generated text quality
+-   memory handling
+-   long-term dependency learning
+
+## Implementation Details
+
+### 1. Data Preparation
+-   A small, custom text corpus is used to allow for quick experimentation and clear observation of model behavior.
+-   Text is tokenized, and `n-gram` sequences are created to train the models for next-word prediction.
+-   Sequences are padded to ensure uniform input length for the neural networks.
+
+### 2. Model Architectures
+Each model consists of:
+-   An **Embedding Layer**: Converts input integer tokens into dense vector representations.
+-   A **Recurrent Layer**: 
+    -   `SimpleRNN` for the Vanilla RNN.
+    -   `LSTM` for the LSTM model.
+    -   `GRU` for the GRU model.
+-   A **Dense Output Layer**: With `softmax` activation to predict the probability distribution of the next word in the vocabulary.
+
+### 3. Training
+-   Models are compiled using `sparse_categorical_crossentropy` as the loss function and the `Adam` optimizer.
+-   Each model is trained for 200 epochs to observe their learning dynamics.
+
+### 4. Text Generation Function
+-   A utility function `generate_text` is implemented to predict subsequent words based on a given seed text, allowing us to qualitatively assess each model's text generation capability.
+
+## Key Findings 
+
+During my work on this project, I observed the following:
+
+-   **Vanilla RNN** was effective for very short patterns but really struggled with remembering information over longer sentences. This made its generated text less coherent, which was a clear limitation.
+-   **LSTM** was a significant step up! Its ability to 'remember' context for much longer, thanks to its special gates, meant it achieved much lower training loss and generated more meaningful text. It was exciting to see how much better it performed.
+-   **GRU** was also impressive. It performed very similarly to LSTM, but I found it to be a bit more streamlined. It's a great option when you need good performance without all the complexity of LSTM.
+
+This project truly helped me understand, both theoretically and practically, why **gated recurrent networks (like LSTM and GRU) are far more effective than simple RNNs** for sequence modeling tasks, especially in text generation. The architectural differences directly translated into better learning, more robust models, and ultimately, higher quality generated text, which is a crucial insight for future deep learning endeavors.
