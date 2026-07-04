@@ -318,3 +318,60 @@ During my work on this project, I observed the following:
 -   **GRU** was also impressive. It performed very similarly to LSTM, but I found it to be a bit more streamlined. It's a great option when you need good performance without all the complexity of LSTM.
 
 This project truly helped me understand, both theoretically and practically, why **gated recurrent networks (like LSTM and GRU) are far more effective than simple RNNs** for sequence modeling tasks, especially in text generation. The architectural differences directly translated into better learning, more robust models, and ultimately, higher quality generated text, which is a crucial insight for future deep learning endeavors.
+
+
+## Week 6
+
+# Image Denoising with a Convolutional Autoencoder on MNIST
+
+## Project Objective
+This project aims to build a deep learning model capable of removing noise from images using a Convolutional Autoencoder (CAE) on the MNIST dataset.
+
+## Project Overview
+We implement a denoising autoencoder to reconstruct clean MNIST digit images from their noisy counterparts. The process involves loading and preprocessing the MNIST dataset, artificially introducing Gaussian noise, training a CAE, and evaluating its performance.
+
+## Table of Contents
+1.  [Setup and Dependencies](#setup-and-dependencies)
+2.  [Data Loading and Preprocessing](#data-loading-and-preprocessing)
+3.  [Adding Noise to Images](#adding-noise-to-images)
+4.  [Model Architecture: Convolutional Autoencoder](#model-architecture-convolutional-autoencoder)
+5.  [Model Training](#model-training)
+6.  [Evaluation and Denoising Results](#evaluation-and-denoising-results)
+7.  [Conclusion](#conclusion)
+
+### 1. Setup and Dependencies
+This project uses TensorFlow and Keras for building and training the deep learning model, along with NumPy, Matplotlib, and PIL for data handling and visualization.
+
+### 2. Data Loading and Preprocessing
+- The MNIST dataset, provided as PNG images in `archive.zip`, is extracted.
+- Images are loaded from `mnist_png` directories (training and testing splits) and resized to 28x28 pixels.
+- Pixel values are normalized to the range \[0, 1\].
+- A channel dimension is added, resulting in image shapes of `(28, 28, 1)`.
+
+**Dataset Statistics:**
+- Training images: 20,000 (28, 28, 1)
+- Testing images: 4,000 (28, 28, 1)
+
+### 3. Adding Noise to Images
+Gaussian noise with a `NOISE_FACTOR` of 0.4 is programmatically added to the clean MNIST images to simulate real-world noisy conditions. The autoencoder's task is to learn to map these noisy inputs back to their original clean versions.
+
+### 4. Model Architecture: Convolutional Autoencoder
+The CAE comprises an encoder and a decoder:
+- **Encoder:** Uses `Conv2D` and `MaxPooling2D` layers to downsample the noisy input image into a compressed latent representation.
+- **Decoder:** Uses `Conv2D` and `UpSampling2D` layers to reconstruct the clean image from the latent space.
+
+The model is compiled with the Adam optimizer and `binary_crossentropy` as the loss function.
+
+### 5. Model Training
+The autoencoder is trained for 20 epochs with a batch size of 128. Noisy training images (`x_train_noisy`) are used as input, and original clean training images (`x_train`) are used as targets. The model's performance is validated on the noisy test set (`x_test_noisy`) against clean test images (`x_test`).
+
+**Training Insights:**
+The training and validation losses rapidly decreased and then flattened, indicating effective learning and good generalization without overfitting.
+
+### 6. Evaluation and Denoising Results
+- The model achieved a test loss (binary crossentropy) of approximately **0.0916**.
+- The Mean Squared Error (MSE) across the test set is **0.00979**, with a standard deviation of **0.00369**.
+- Visualizations demonstrate the autoencoder's ability to significantly restore clarity to noisy digits, showcasing clean original images, noisy inputs, and the denoised outputs for each digit from 0 to 9.
+
+### 7. Conclusion
+This project successfully implemented a Convolutional Autoencoder for image denoising on the MNIST dataset. The model effectively learned to remove noise, as evidenced by low test loss and MSE, and visually improved image clarity. This demonstrates the practical application of autoencoders in image processing.
