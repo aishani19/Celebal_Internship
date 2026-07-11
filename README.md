@@ -375,3 +375,35 @@ The training and validation losses rapidly decreased and then flattened, indicat
 
 ### 7. Conclusion
 This project successfully implemented a Convolutional Autoencoder for image denoising on the MNIST dataset. The model effectively learned to remove noise, as evidenced by low test loss and MSE, and visually improved image clarity. This demonstrates the practical application of autoencoders in image processing.
+
+## Week 7
+# FetchWise: RAG Chatbot
+
+FetchWise is a sophisticated Retrieval-Augmented Generation (RAG) chatbot designed to provide intelligent answers based on your own documents. It leverages advanced NLP models and vector databases to deliver accurate, context-aware responses.
+
+## 🚀 Features
+
+- **Multi-Document Support**: Upload and index PDFs, Word documents, and HTML files.
+- **RAG-Powered Conversations**: Uses Retrieval-Augmented Generation to ground AI responses in your specific data.
+- **Conversational Memory**: Maintains chat history within a session for context-aware follow-up responses.
+- **Interactive UI**: A clean, modern Streamlit interface for seamless user interaction.
+- **High-Performance Vector Search**: Uses ChromaDB for fast, accurate semantic retrieval.
+- **Scalable Backend**: Powered by FastAPI for robust and efficient API handling.
+
+### ⚙️ How it Works
+
+1.  **Ingestion & Vectorization**: Uploaded files are chunked into 1000-character segments with overlap. These chunks are embedded using HuggingFace's `all-MiniLM-L6-v2` and stored in **ChromaDB**.
+2.  **Conversational Retrieval**: The system is "history-aware." It uses the session's chat log to contextualize user queries, ensuring follow-up questions (e.g., "Why?") are understood correctly.
+3.  **High-Speed Generation**: We utilize **Llama 3.3 (70B) on Groq Cloud** for near-instant inference, synthesizing the retrieved context into a clear and accurate final response.
+
+> [!TIP]
+> **Vector-First Architecture**: We use **ChromaDB** for specialized vector search, keeping retrieval fast and the stack lightweight — no separate database server required for chat history or metadata.
+
+## 🛠️ Technology Stack
+
+- **Frontend**: [Streamlit](https://streamlit.io/)
+- **Backend**: [FastAPI](https://fastapi.tiangolo.com/)
+- **Orchestration**: [LangChain](https://www.langchain.com/)
+- **LLM**: Groq — `llama-3.3-70b-versatile` (via `langchain-groq`)
+- **Vector Database**: [ChromaDB](https://www.trychroma.com/)
+- **Document Parsing**: PyPDF, docx2txt, Unstructured
