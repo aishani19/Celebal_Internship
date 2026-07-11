@@ -5,7 +5,7 @@ import time
 
 def run():
     print("========================================")
-    print("     DocumentIQ RAG Chatbot Startup     ")
+    print("     FetchWise RAG Chatbot Startup     ")
     print("========================================")
     
     # Ensure we are in the root directory
