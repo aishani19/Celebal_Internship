@@ -1,0 +1,53 @@
+services:
+  - type: web
+    name: fastapi-backend
+    env: python
+    plan: free
+    # Each service is located in the Chatbot/ directory
+    rootDir: Chatbot
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.main:app --host=0.0.0.0 --port=${PORT}
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: PYTHON_VERSION
+        value: "3.11.10"
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: MALLOC_ARENA_MAX
+        value: "2"
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: DB_URI
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: LLM_TEMPERATURE
+        value: "0.7"
+      - key: RETRIEVER_K
+        value: "5"
+
+  - type: web
+    name: streamlit-frontend
+    env: python
+    plan: free
+    rootDir: Chatbot
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run src/streamlit_app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PORT
+        value: 8501
+      - key: PYTHON_VERSION
+        value: "3.11.10"
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: MALLOC_ARENA_MAX
+        value: "2"
+      # Automatically link the frontend to the backend URL
+      - key: API_URL
+        fromService:
+          name: fastapi-backend
+          type: web
+          property: hostport
