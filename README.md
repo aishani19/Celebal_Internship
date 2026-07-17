@@ -408,11 +408,6 @@ FetchWise is a sophisticated Retrieval-Augmented Generation (RAG) chatbot design
 - **Vector Database**: [ChromaDB](https://www.trychroma.com/)
 - **Document Parsing**: PyPDF, docx2txt, Unstructured
 ## Week 8 Assignment
-# Single-Agent Pipeline Project: README.md
-
-This markdown block contains the content for your `README.md` file. You can copy and paste this into a new file named `README.md` in your project repository.
-
-```markdown
 # Single-Agent Pipeline Project
 
 ## Project Overview
@@ -467,15 +462,6 @@ All agent responses adhere to the following JSON structure:
   "type": "calculation / keywords / general / error",
   "result": "..."
 }
-```
 
-## Extendability (Bonus Ideas)
--   **Improve Routing**: Implement more sophisticated natural language processing (NLP) for better intent detection.
--   **Add Logging**: Incorporate logging to track agent activities and performance.
--   **Add More Tools**: Integrate additional tools for functionalities like:
-    -   Weather information
-    -   Translation
-    -   Code generation
-    -   Data retrieval from APIs
--   **Advanced Error Handling**: Implement more granular error types and recovery mechanisms.
-```
+
+
