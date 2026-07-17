@@ -407,3 +407,75 @@ FetchWise is a sophisticated Retrieval-Augmented Generation (RAG) chatbot design
 - **LLM**: Groq — `llama-3.3-70b-versatile` (via `langchain-groq`)
 - **Vector Database**: [ChromaDB](https://www.trychroma.com/)
 - **Document Parsing**: PyPDF, docx2txt, Unstructured
+## Week 8 Assignment
+# Single-Agent Pipeline Project: README.md
+
+This markdown block contains the content for your `README.md` file. You can copy and paste this into a new file named `README.md` in your project repository.
+
+```markdown
+# Single-Agent Pipeline Project
+
+## Project Overview
+This Jupyter notebook implements a **Single-Agent Smart Assistant** designed to process user queries, route them to appropriate tools based on intent, and return structured JSON output. This project demonstrates basic agent logic, conditional routing, and tool integration, providing a foundation for more complex intelligent systems.
+
+## Features
+-   **Conditional Routing**: The agent intelligently directs queries to specific tools based on keywords detected in the user's input.
+-   **Tool Integration**: 
+    -   **Calculator Tool**: Evaluates mathematical expressions.
+    -   **Keyword Extractor Tool**: Extracts keywords from given text.
+-   **Structured Output**: All responses are returned in a consistent JSON format, indicating the type of response (calculation, keywords, general, or error) and the result.
+-   **Error Handling**: Basic error handling is implemented within each tool and the agent function to gracefully manage unexpected inputs or issues.
+
+## Tools Implemented
+
+### 1. Calculator
+-   **Function**: `calculator(expression: str) -> str`
+-   **Description**: Takes a string mathematical expression and returns its evaluated result. Handles basic arithmetic operations.
+-   **Example Trigger**: Queries containing "calculate".
+
+### 2. Keyword Extractor
+-   **Function**: `extract_keywords(text: str) -> list`
+-   **Description**: Processes a given text and extracts a list of up to 5 keywords (words longer than 4 characters), removing punctuation. Case-insensitive.
+-   **Example Trigger**: Queries containing "keywords".
+
+## How to Use
+
+1.  **Clone the Repository**: If you haven't already, clone this repository to your local machine.
+2.  **Open the Notebook**: Open the `[Your Notebook Name].ipynb` (or similar) file in a Jupyter environment (e.g., Jupyter Lab, Google Colab).
+3.  **Run All Cells**: Execute all cells in the notebook sequentially to define the agent function and its associated tools.
+4.  **Test Cases**: A `Test Cases` section within the notebook demonstrates the agent's functionality with predefined queries. 
+5.  **Interactive Mode**: An `Interactive Mode` section allows you to interact with the agent directly. Enter your queries and see the agent's responses in real-time.
+    -   Type `exit` to stop the interactive session.
+
+## Examples of Queries (in Interactive Mode)
+
+-   **Calculator**: 
+    -   `calculate 15 * (4 + 2)`
+    -   `calculate 100 / 5 - 7`
+-   **Keyword Extractor**: 
+    -   `extract keywords from The quick brown fox jumps over the lazy dog`
+    -   `extract keywords from Artificial Intelligence is transforming industries`
+-   **General Query**: 
+    -   `What is the capital of France?`
+    -   `Tell me a joke`
+
+## Output Format
+All agent responses adhere to the following JSON structure:
+
+```json
+{
+  "type": "calculation / keywords / general / error",
+  "result": "..."
+}
+```
+
+## Extendability (Bonus Ideas)
+-   **Improve Routing**: Implement more sophisticated natural language processing (NLP) for better intent detection.
+-   **Add Logging**: Incorporate logging to track agent activities and performance.
+-   **Add More Tools**: Integrate additional tools for functionalities like:
+    -   Weather information
+    -   Translation
+    -   Code generation
+    -   Data retrieval from APIs
+-   **Advanced Error Handling**: Implement more granular error types and recovery mechanisms.
+```
