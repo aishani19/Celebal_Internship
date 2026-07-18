@@ -1,0 +1,7 @@
+numpy
+torch
+tiktoken
+transformers
+streamlit
+matplotlib
+pandas
