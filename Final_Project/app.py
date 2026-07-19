@@ -1,7 +1,5 @@
 import os
 import sys
-import time
-import subprocess
 import torch
 import torch.nn.functional as F
 import streamlit as st
@@ -181,7 +179,7 @@ prompt = st.text_area(
 
 top_k_n = st.slider("How many top predictions to show", min_value=1, max_value=20, value=5)
 
-generate_btn = st.button("Generate ✨", disabled=not training_done)
+generate_btn = st.button("Generate ✨", disabled=(FINAL_CKPT is None))
 
 # Output placeholder
 output_area = st.empty()
